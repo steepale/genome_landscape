@@ -1,0 +1,22 @@
+#===============================================================================
+#
+#         FILE: /Users/Alec/Documents/Bioinformatics/MDV_Project/genome_landscape/scripts/somatic_snvs_indels_main_documentation.txt
+#
+#  DESCRIPTION: Generate broad genome statistics on somatic snvs and indels
+#
+#        USAGE: for documentation purposes, scripts inside
+#                
+# REQUIREMENTS:  
+#        NOTES:  ---
+#       AUTHOR:  Alec Steep, steepale@msu.edu
+#  AFFILIATION:  Michigan State University (MSU), East Lansing, MI, United States
+#        			         USDA ARS Avian Disease and Oncology Lab (ADOL), East Lansing, MI, United States
+#				         Technical University of Munich (TUM), Weihenstephan, Germany
+#      VERSION:  1.0
+#      CREATED:  2017.05.02
+#     REVISION:  
+#===============================================================================
+
+# Permanent PROJECT DIRECTORY (Alec's MacBook)
+cd /Users/Alec/Documents/Bioinformatics/MDV_Project/genome_landscape
+
