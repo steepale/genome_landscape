@@ -19,6 +19,8 @@
 
 # Permanent PROJECT DIRECTORY (Alec's MacBook)
 cd /Users/Alec/Documents/Bioinformatics/MDV_Project/genome_landscape
+# & /home/proj/MDW_genomics/steepale/genome_landscape (TUM)
+
 
 # Determine the total number of somatic snvs and indels with the same samtools-based custom
 # filtering technique used for filtering the non-synonymous snvs and indels
@@ -28,15 +30,16 @@ cd /Users/Alec/Documents/Bioinformatics/MDV_Project/genome_landscape
 # Furthermore, we will extract files from this other directory to run this script to save space 
 
 # Filter the calls of interest from the vep vcf file and collect stats from samtools mpileup manual analysis
+# Note: Each script is estimated to take 1 day to run
 for Tbird in `cat /home/users/a.steep/databases/samples/tumor_sample_dnaseq_list_NNN-N_SN.txt`
 do
-qsub ./scripts/custom_filter_somatic_snv_indel_wrapper.sh $Tbird
+qsub ./scripts/custom_filter_somatic_snvs_indels_wrapper.sh $Tbird
 done
 
 # ./scripts/custom_filter_somatic_snvs_indels_wrapper.sh
 ##############################
 
-cd /Users/Alec/Documents/Bioinformatics/MDV_Project/genome_landscape
+cd /home/proj/MDW_genomics/steepale/genome_landscape
 
 # Assign the sample variable
 Tbird=$1
@@ -61,26 +64,6 @@ $Tbird
 grep -v "^#" './data/all_somatic_snv_indel_'$Tbird'.txt' | sort | uniq) > \
 './data/all_somatic_snv_indel_'$Tbird'_final.txt'
 ##############################
-
-# Combine the SNV and INDEL files
-(grep "^#" /home/proj/MDW_genomics/steepale/mutated_gene_annotation/data/somaticseq_vcf/738-1_S1_somaticseq_snv_vep.vcf; \
-grep -v "^#" /home/proj/MDW_genomics/steepale/mutated_gene_annotation/data/somaticseq_vcf/738-1_S1_somaticseq_snv_vep.vcf; \
-grep -v "^#" /home/proj/MDW_genomics/steepale/mutated_gene_annotation/data/somaticseq_vcf/738-1_S1_somaticseq_indel_vep.vcf) > \
-/home/proj/MDW_genomics/steepale/mutated_gene_annotation/data/somaticseq_vcf/738-1_S1_somaticseq_snv_indel_vep.vcf
-
-# Create an empty file or python script will error
-touch ./data/all_somatic_snv_indel_738-1_S1.txt
-
-# Run python filtering script
-python ./scripts/custom_filter_somatic_snvs_indels.py \
-/home/proj/MDW_genomics/steepale/mutated_gene_annotation/data/somaticseq_vcf/738-1_S1_somaticseq_snv_indel_vep.vcf \
-./data/all_somatic_snv_indel_738-1_S1.txt \
-738-1_S1
-
-# Sort the sites that passed filtering to reduce redundency
-(grep "^#" ./data/all_somatic_snv_indel_738-1_S1.txt; \
-grep -v "^#" ./data/all_somatic_snv_indel_738-1_S1.txt | sort | uniq) > \
-./data/all_somatic_snv_indel_738-1_S1_final.txt
 
 # ./scripts/custom_filter_somatic_snvs_indels.py
 ##############################
@@ -376,4 +359,13 @@ for vep_line in vep_file:
 				outfile.write(vep_chr + '\t' + vep_pos + '\t' + vep_ref + '\t' + vep_alt + '\t' + vep_cons + '\t' + vep_impact + '\t' + vep_symbol + '\t' + vep_geneid + '\t' + str(len(sam2VACVAF)) + '\t' + tumor_samples + '\t' + tumor_VAC + '\t' + tumor_VAF + '\t' + vep_tool_num + '\n')
 outfile.close()
 ######################################
+
+
+
+
+
+
+
+
+
 

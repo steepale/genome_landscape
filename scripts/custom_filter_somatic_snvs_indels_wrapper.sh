@@ -1,5 +1,4 @@
-
-cd /Users/Alec/Documents/Bioinformatics/MDV_Project/genome_landscape
+cd /home/proj/MDW_genomics/steepale/genome_landscape
 
 # Assign the sample variable
 Tbird=$1
